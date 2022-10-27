@@ -20,14 +20,26 @@ export default function Home({ characters }: HomeProps) {
       <main className={styles.main}>
         {characters.map((character) => {
           return (
-            <Link href={ROUTES.character(character.id)} key={character.id}>
-              <div>
-                <p>{character.name}</p>
-                <p>{character.gender}</p>
-                <p>{character.status}</p>
-                <p>{character.location.name}</p>
+            // <Link href={ROUTES.character(character.id)} key={character.id}>
+            <div className="card" key={character.id}>
+              <Image
+                src={character.image}
+                alt="Picture of the author"
+                width={200}
+                height={200}
+              />
+              <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+                <p className="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the cards content.
+                </p>
+                <a href="#" className="btn btn-primary">
+                  Go somewhere
+                </a>
               </div>
-            </Link>
+            </div>
+            // </Link>
           );
         })}
       </main>
