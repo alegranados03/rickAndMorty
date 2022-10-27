@@ -17,17 +17,22 @@ export default function Home({ characters }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main className={`three-column-grid`}>
         {characters.map((character) => {
           return (
             // <Link href={ROUTES.character(character.id)} key={character.id}>
-            <div className="card" key={character.id}>
+            <div className="card card-image-container" style={{ width: "90%" }} key={character.id}>
+              <div className={styles.card_image_container}>
+
               <Image
                 src={character.image}
                 alt="Picture of the author"
                 width={200}
                 height={200}
+    
               />
+              </div>
+
               <div className="card-body">
                 <h5 className="card-title">Card title</h5>
                 <p className="card-text">
