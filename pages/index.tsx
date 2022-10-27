@@ -2,10 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import { ROUTES } from "../routes/routes";
+import { API_ROUTES, ROUTES } from "../routes/routes";
+import { ICharacter } from "../types/character.interface";
 
 interface HomeProps {
-  characters: {};
+  characters: ICharacter[];
 }
 export default function Home({ characters }: HomeProps) {
   return (
@@ -17,7 +18,18 @@ export default function Home({ characters }: HomeProps) {
       </Head>
 
       <main className={styles.main}>
-        {/* <Link href="/characters/1">1</Link> */}
+        {characters.map((character) => {
+          return (
+            <Link href={ROUTES.character(character.id)} key={character.id}>
+              <div>
+                <p>{character.name}</p>
+                <p>{character.gender}</p>
+                <p>{character.status}</p>
+                <p>{character.location.name}</p>
+              </div>
+            </Link>
+          );
+        })}
       </main>
 
       <footer className={styles.footer}></footer>
@@ -26,8 +38,9 @@ export default function Home({ characters }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const response = await fetch(ROUTES.static.characters);
-  const characters = await response.json();
+  const response = await fetch(API_ROUTES.static.characters);
+  const { results: characters } = await response.json();
+
   return {
     props: {
       characters,
