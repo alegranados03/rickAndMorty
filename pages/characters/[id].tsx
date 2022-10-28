@@ -5,6 +5,7 @@ import styles from "../../styles/Home.module.css";
 import { IEpisode } from "../../types/episode.interface";
 import Link from "next/link";
 import Head from "next/head";
+import EpisodeCard from "../../components/EpisodeCard";
 
 export async function getServerSideProps(context: any) {
   const id = context.params.id;
@@ -77,18 +78,7 @@ const CharactersProfilePage = ({
               className={`${styles.custom_grid} ${styles.grid_auto_rows_5} ${styles.dark_background}`}
             >
               {episodes.map((episode) => {
-                return (
-                  <div
-                    key={episode.id}
-                    className={`${styles.card_information} ${styles.card_gray}`}
-                    style={{ padding: "1em" }}
-                  >
-                    <h4
-                      className={styles.card_title}
-                    >{`${episode.episode} - ${episode.name}`}</h4>
-                    <p>{episode.air_date}</p>
-                  </div>
-                );
+                return <EpisodeCard key={episode.id} episode={episode} />;
               })}
             </div>
           </div>

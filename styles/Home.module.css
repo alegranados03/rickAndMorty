@@ -129,7 +129,7 @@
 }
 
 .card_section {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
 }
 
 .text_gray {
@@ -171,22 +171,21 @@
   padding: 1em;
 }
 
-.dark_background{
+.dark_background {
   background: rgb(32, 35, 41);
 }
 .grid_auto_rows_5 {
   grid-auto-rows: 5.6em;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
+@media screen and (max-width: 1024px) {
+  .custom_grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .code {
-    background: #111;
+}
+
+@media screen and (max-width: 700) {
+  .custom_grid {
+    grid-template-columns: repeat(1,1fr);
   }
-  .logo img {
-    filter: invert(1);
-  }
-} */
+}
