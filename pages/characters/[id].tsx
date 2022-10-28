@@ -77,7 +77,7 @@ const CharactersProfilePage = ({
             <div
               className={`${styles.custom_grid} ${styles.grid_auto_rows_5} ${styles.dark_background}`}
             >
-              {episodes.map((episode) => {
+              {episodes?.map((episode) => {
                 return <EpisodeCard key={episode.id} episode={episode} />;
               })}
             </div>
