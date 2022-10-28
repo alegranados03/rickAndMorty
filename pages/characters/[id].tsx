@@ -11,7 +11,7 @@ export async function getServerSideProps(context: any) {
   const id = context.params.id;
   const response = await fetch(API_ROUTES.dynamics.character(id));
   const character: ICharacter = await response.json();
-  const episodeIds = character.episode.map((episode) => {
+  const episodeIds = character?.episode.map((episode) => {
     const splitString = episode.split("/");
     return +splitString[splitString.length - 1];
   });
@@ -34,7 +34,7 @@ const CharactersProfilePage = ({
   return (
     <>
       <Head>
-        <title>{`${character.name}`} | Rick & Morty App</title>
+        <title>{`${character?.name}`} | Rick & Morty App</title>
       </Head>
       <div className={`${styles.container} ${styles.dark_background}`}>
         <div className="d-flex">
@@ -48,7 +48,7 @@ const CharactersProfilePage = ({
         <div className={`card p-3 ${styles.card_gray} ${styles.text_white}`}>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Image
-              src={character.image}
+              src={character?.image}
               alt="Picture of the author"
               width={300}
               height={300}
@@ -58,19 +58,19 @@ const CharactersProfilePage = ({
           <h2>
             {" "}
             <span className={styles.text_gray}>Name: </span>
-            {character.name}
+            {character?.name}
           </h2>
           <p>
             <span className={styles.text_gray}>Gender: </span>
-            {character.gender}
+            {character?.gender}
           </p>
           <p>
             <span className={styles.text_gray}>Status: </span>
-            {character.status}
+            {character?.status}
           </p>
           <p>
             <span className={styles.text_gray}>Origin: </span>
-            {character.location.name}
+            {character?.location.name}
           </p>
           <div style={{ marginTop: "1em" }}>
             <h2>List of episodes</h2>

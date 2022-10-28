@@ -7,13 +7,13 @@ const EpisodeCard = ({ episode }: IEpisodeCardProps) => {
   return (
     <div
       key={episode.id}
-      className={`${styles.card_information} ${styles.card_gray}`}
+      className={`${styles?.card_information} ${styles?.card_gray}`}
 
     >
       <h4
         className={styles.card_title}
-      >{`${episode.episode} - ${episode.name}`}</h4>
-      <p>{episode.air_date}</p>
+      >{`${episode?.episode} - ${episode?.name}`}</h4>
+      <p>{episode?.air_date}</p>
     </div>
   );
 };
