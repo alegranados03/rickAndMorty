@@ -4,24 +4,35 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { API_ROUTES, ROUTES } from "../routes/routes";
 import { ICharacter } from "../types/character.interface";
+import { Loader } from "../components/Loader";
 
 interface HomeProps {
   characters: ICharacter[];
 }
 export default function Home({ characters }: HomeProps) {
-  console.log(characters);
   return (
     <>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles.dark_background}`}>
         <Head>
           <title>Rick & Morty App</title>
           <meta name="description" content="" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <main className={`${styles.custom_grid}`}>
+        <div className={styles.index_titantron}>
+          <Image
+            alt="Rick and Morty"
+            src="/rickandmorty.png"
+            width={1000}
+            height={300}
+          />
+        </div>
+        <main className={styles.custom_grid}>
           {characters.map((character) => {
             return (
-              <div className={`card ${styles.custom_card}`} key={character.id}>
+              <div
+                className={`card ${styles.custom_card} ${styles.card_gray} ${styles.text_white}`}
+                key={character.id}
+              >
                 <Link href={ROUTES.character(character.id)}>
                   <Image
                     src={character.image}
