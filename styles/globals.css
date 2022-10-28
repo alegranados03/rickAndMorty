@@ -15,12 +15,6 @@ a {
   box-sizing: border-box;
 }
 
-.three-column-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  row-gap: 1em;
-}
-
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

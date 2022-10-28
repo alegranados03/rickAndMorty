@@ -9,48 +9,53 @@ interface HomeProps {
   characters: ICharacter[];
 }
 export default function Home({ characters }: HomeProps) {
+  console.log(characters);
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Rick & Morty App</title>
-        <meta name="description" content="" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={`three-column-grid`}>
-        {characters.map((character) => {
-          return (
-            // <Link href={ROUTES.character(character.id)} key={character.id}>
-            <div className="card card-image-container" style={{ width: "90%" }} key={character.id}>
-              <div className={styles.card_image_container}>
-
-              <Image
-                src={character.image}
-                alt="Picture of the author"
-                width={200}
-                height={200}
-    
-              />
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>Rick & Morty App</title>
+          <meta name="description" content="" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className={`${styles.custom_grid}`}>
+          {characters.map((character) => {
+            return (
+              <div className={`card ${styles.custom_card}`} key={character.id}>
+                <Link href={ROUTES.character(character.id)}>
+                  <Image
+                    src={character.image}
+                    alt="Picture of the author"
+                    width={200}
+                    height={200}
+                  />
+                </Link>
+                <div className={styles.card_information}>
+                  <div className={styles.card_section}>
+                    <Link
+                      className={styles.card_title}
+                      href={ROUTES.character(character.id)}
+                    >
+                      <h2>{character.name}</h2>
+                    </Link>
+                    <span className={styles.text_gray}>Species</span>
+                    <p>
+                      {character.status} - {character.species}
+                    </p>
+                  </div>
+                  <div className={styles.card_section}>
+                    <span className={styles.text_gray}>Origin</span>
+                    <p>{character.origin.name}</p>
+                  </div>
+                </div>
               </div>
+            );
+          })}
+        </main>
 
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the cards content.
-                </p>
-                <a href="#" className="btn btn-primary">
-                  Go somewhere
-                </a>
-              </div>
-            </div>
-            // </Link>
-          );
-        })}
-      </main>
-
-      <footer className={styles.footer}></footer>
-    </div>
+        <footer className={styles.footer}></footer>
+      </div>
+    </>
   );
 }
 
