@@ -5,11 +5,15 @@ import styles from "../styles/Home.module.css";
 import { API_ROUTES } from "../routes/routes";
 import { ICharacter } from "../types/character.interface";
 import CharacterCard from "../components/CharacterCard";
+import { useState } from "react";
 
 interface HomeProps {
   characters: ICharacter[];
 }
+
 export default function Home({ characters }: HomeProps) {
+  const [charactersArray] = useState(characters);
+
   return (
     <>
       <div className={`${styles.container} ${styles.dark_background}`}>
@@ -27,7 +31,7 @@ export default function Home({ characters }: HomeProps) {
           />
         </div>
         <main className={styles.custom_grid}>
-          {characters.map((character) => {
+          {charactersArray.map((character) => {
             return <CharacterCard key={character.id} character={character} />;
           })}
         </main>
