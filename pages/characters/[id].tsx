@@ -24,7 +24,7 @@ export async function getServerSideProps(context: any) {
 
 interface CharacterProfileProps {
   character: ICharacter;
-  episodes: IEpisode[];
+  episodes: IEpisode[] | IEpisode;
 }
 
 const CharactersProfilePage = ({
@@ -77,9 +77,13 @@ const CharactersProfilePage = ({
             <div
               className={`${styles.custom_grid} ${styles.grid_auto_rows_5} ${styles.dark_background}`}
             >
-              {episodes?.map((episode) => {
-                return <EpisodeCard key={episode.id} episode={episode} />;
-              })}
+              {Array.isArray(episodes) ? (
+                episodes?.map((episode) => {
+                  return <EpisodeCard key={episode.id} episode={episode} />;
+                })
+              ) : (
+                <EpisodeCard key={episodes.id} episode={episodes} />
+              )}
             </div>
           </div>
         </div>
